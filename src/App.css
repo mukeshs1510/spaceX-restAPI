@@ -33,3 +33,38 @@ h1 {
   text-align: center;
   width: 100%;
 }
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 10vh;
+  background: #242b2e;
+  color: white;
+}
+
+.navlinks {
+  width: 40%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+}
+
+.navlinks li {
+  cursor: pointer;
+  color: white;
+  transition: all 0.5s ease;
+}
+.navlinks li:hover {
+  color: #03c6c7;
+}
+
+.logo {
+  color: white;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.logo:hover {
+  color: #03c6c7;
+}
