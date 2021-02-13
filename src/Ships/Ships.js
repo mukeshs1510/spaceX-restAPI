@@ -1,22 +1,45 @@
-import React, { useEffect, Component } from "react";
+import React, { Component, useEffect } from "react";
+import { TypesShip } from "../Ships/TypesShip";
+import { Fragment } from "react/cjs/react.development";
+import { CardShips } from "./CardShips";
+import { ModelShips } from "./ModelShips";
 
-function Ships() {
-  useEffect(() => {
-    fetchItem();
-  }, []);
+export default class Ships extends Component {
+  constructor() {
+    super();
 
-  const fetchItem = async () => {
-    const shipData = await fetch("https://api.spacexdata.com/v4/ships");
+    this.state = {
+      ships: [],
+      selectedType: "",
+    };
+  }
 
-    const items = await shipData.json();
-    console.log(items);
+  componentDidMount() {
+    fetch("https://api.spacexdata.com/v4/ships")
+      .then((responce) => responce.json())
+      .then((ships) => this.setState({ ships: ships }));
+  }
+
+  handleChange = (e) => {
+    this.setState({ selectedType: e.target.value });
   };
 
-  return (
-    <div>
-      <h1 style={{ color: "#242b2e" }}>Ships</h1>
-    </div>
-  );
+  render() {
+    const { ships, selectedType } = this.state;
+    const filteredShips = ships.filter((ships) => ships.type == selectedType);
+    return (
+      <div>
+        <h1 style={{ color: "#242b2e" }}>SpaceX Ships Encyclopedia</h1>
+        <TypesShip onChange={this.handleChange} />
+        <div className="row">
+          {filteredShips.map((ships) => (
+            <Fragment>
+              <CardShips ships={ships} />
+              <ModelShips ships={ships} />
+            </Fragment>
+          ))}
+        </div>
+      </div>
+    );
+  }
 }
-
-export default Ships;
