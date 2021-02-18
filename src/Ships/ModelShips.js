@@ -60,7 +60,7 @@ export const ModelShips = ({ ships }) => (
           <div className="row rocket-info">
             <div className="col-sm-4">
               <h4>Model</h4>
-              <p>{ships.model}</p>
+              <p>{ships.legacy_id}</p>
             </div>
             <div className="col-sm-4">
               <h4>Type</h4>
@@ -76,7 +76,11 @@ export const ModelShips = ({ ships }) => (
             </div>
             <div className="col-sm-4">
               <h4>Year of build</h4>
-              <p>${ships.year_built}</p>
+              <p>{ships.year_built}</p>
+            </div>
+            <div className="col-sm-4">
+              <h4>Home Port</h4>
+              <p>{ships.home_port}</p>
             </div>
           </div>
           <a
